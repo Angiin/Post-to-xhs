@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(cd:*)",
+      "Bash(cd /c/Users/admin/Desktop/GitHub/Post-to-xhs/scripts && python cdp_search.py --help 2>&1)",
+      "Bash(cd /c/Users/admin/Desktop/GitHub/Post-to-xhs/scripts && python cdp_search.py search --help 2>&1)",
+      "Bash(cd /c/Users/admin/Desktop/GitHub/Post-to-xhs/scripts && PYTHONIOENCODING=utf-8 python -X utf8 cdp_search.py search --keyword \"生化危机\" --limit 10 2>&1)",
+      "Bash(cd /c/Users/admin/Desktop/GitHub/Post-to-xhs && python -c \"\nimport sys, os, time, json\nSCRIPT_DIR = os.path.join\\(os.getcwd\\(\\), 'scripts'\\)\nsys.path.insert\\(0, SCRIPT_DIR\\)\nfrom cdp_publish import XiaohongshuPublisher\n\npub = XiaohongshuPublisher\\(\\)\npub.connect\\(\\)\n\n# Navigate to search\npub._navigate\\('https://www.xiaohongshu.com/search_result?keyword=%E7%94%9F%E5%8C%96%E5%8D%B1%E6%9C%BA&source=web_explore_feed'\\)\ntime.sleep\\(5\\)\n\n# Close login modal\npub._evaluate\\('''\n\\(function\\(\\) {\n    var closeBtn = document.querySelector\\(\n        \\\\\"div.login-modal .close-button, div.reds-modal .close-button, div.login-modal [class*=\\\\\\\\\\\\\"close\\\\\\\\\\\\\"]\\\\\"\n    \\);\n    if \\(closeBtn\\) { closeBtn.click\\(\\); return 'closed'; }\n    return 'no modal';\n}\\)\\(\\);\n'''\\)\ntime.sleep\\(3\\)\n\n# Check __INITIAL_STATE__\nstate = pub._evaluate\\('''\n\\(function\\(\\) {\n    if \\(!window.__INITIAL_STATE__\\) return 'no_state';\n    if \\(!window.__INITIAL_STATE__.search\\) return 'no_search: ' + Object.keys\\(window.__INITIAL_STATE__\\).join\\(','\\);\n    var search = window.__INITIAL_STATE__.search;\n    var keys = Object.keys\\(search\\);\n    var feeds = search.feeds;\n    var feedsInfo = 'none';\n    if \\(feeds\\) {\n        var data = feeds.value !== undefined ? feeds.value : feeds._value;\n        feedsInfo = 'type=' + typeof data + ' length=' + \\(data ? data.length : 'null'\\);\n    }\n    return 'search_keys=' + keys.join\\(','\\) + ' feeds=' + feedsInfo;\n}\\)\\(\\);\n'''\\)\nprint\\('STATE:', state\\)\n\npub.disconnect\\(\\)\n\" 2>&1)",
+      "Bash(cd /c/Users/admin/Desktop/GitHub/Post-to-xhs && python scripts/_debug_search.py 2>&1)",
+      "Bash(cd /c/Users/admin/Desktop/GitHub/Post-to-xhs && python scripts/cdp_search.py search --keyword \"生化危机\" 2>&1)",
+      "Bash(cd /c/Users/admin/Desktop/GitHub/Post-to-xhs && python scripts/cdp_publish.py login 2>&1)",
+      "Bash(cd /c/Users/admin/Desktop/GitHub/Post-to-xhs && python scripts/cdp_search.py search --keyword \"生化危机\" --tab image --limit 5 2>&1)",
+      "Bash(python:*)",
+      "Bash(PYTHONIOENCODING=utf-8 python:*)",
+      "Bash(echo Exit code: $?:*)"
+    ]
+  }
+}
